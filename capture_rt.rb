@@ -6,7 +6,7 @@ require "json"
 
 STDOUT.sync = true
 
-FILTER="port 80 or port 8080"
+FILTER="port 81 or port 8080"
 
 dev = ARGV[0]
 
@@ -55,6 +55,8 @@ packets.stream.each do |pkt|
           print "E2EO#1 <- NWRO#1"
         when "172.30.48.156"
           print "E2EO#2 <- NWRO#1"
+        when "172.30.53.253"
+          print "踏み台 <- NWRO#1"
         else
           print "不明IP:#{tcp_packet.ip_daddr}"
         end
@@ -64,6 +66,17 @@ packets.stream.each do |pkt|
           print "E2EO#1 <- NWRO#2"
         when "172.30.48.156"
           print "E2EO#2 <- NWRO#2"
+        when "172.30.53.253"
+          print "踏み台 <- NWRO#2"
+        else
+          print "不明IP:#{tcp_packet.ip_daddr}"
+        end
+      when "172.30.53.253"
+        case tcp_packet.ip_daddr
+        when "172.30.48.140"
+          print "踏み台 -> NWRO#1"
+        when "172.30.48.141"
+          print "踏み台 -> NWRO#2"
         else
           print "不明IP:#{tcp_packet.ip_daddr}"
         end
