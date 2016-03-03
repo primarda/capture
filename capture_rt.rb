@@ -6,7 +6,7 @@ require "json"
 
 STDOUT.sync = true
 
-FILTER="port 81 or port 8080"
+FILTER="not host 172.30.49.188 or not port 22"
 
 dev = ARGV[0]
 
