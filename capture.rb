@@ -94,6 +94,7 @@ packets.each do |pkt|
           print "電文識別不能!"
         end
       when %r{createLocation}
+        #binding.pry
         case body
         when %r{resource.*?v1\\/vnfds}
           print "カタログ(VNFD)登録完了通知"
